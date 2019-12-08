@@ -41,31 +41,33 @@ pub mod intcodes {
     pub fn handle_intcode(intcode: &mut Vec<i32>) {
         let mut counter = 0;
 
-        let mut finish = false;
-        while !finish {
-            finish = handle_next(intcode, counter);
+        while !handle_next(intcode, counter) {
             counter += 4;
         }
     }
 
-    pub fn handle_next(intcode: &mut Vec<i32>, current_position: usize) -> bool {
-        let mut return_value = false;
+    fn handle_next(intcode: &mut Vec<i32>, current_position: usize) -> bool {
         match intcode[current_position] {
             1 => {
-                let add_closure = |num: i32, num2: i32| num + num2;
-                handle_chunk(intcode, current_position, &add_closure);
+                handle_chunk(intcode, current_position, &add_function);
             }
             2 => {
-                let multiply_closure = |num: i32, num2: i32| num * num2;
-                handle_chunk(intcode, current_position, &multiply_closure);
+                handle_chunk(intcode, current_position, &multiply_function);
             }
             99 => {
-                return_value = true;
+                return true;
             }
             _ => panic!("Wrong opcode!"),
         }
 
-        return_value
+        false
+    }
+
+    fn add_function(num1: i32, num2: i32) -> i32 {
+        num1 + num2
+    }
+    fn multiply_function(num1: i32, num2: i32) -> i32 {
+        num1 * num2
     }
 
     fn handle_chunk(
