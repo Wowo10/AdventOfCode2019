@@ -1,5 +1,5 @@
-pub fn get_input() -> Vec<String> {
-    load_file_by_lines()
+pub fn get_input() -> Vec<i32> {
+    parse_input(load_file_by_lines())
 }
 
 fn load_file_by_lines() -> Vec<String> {
@@ -17,4 +17,13 @@ fn load_file_by_lines() -> Vec<String> {
     }
 
     result
+}
+
+fn parse_input(raw_input: Vec<String>) -> Vec<i32> {
+    let mut parsed_input = Vec::new();
+    for line in raw_input{
+        parsed_input.push(line.parse().unwrap());
+    }
+
+    parsed_input
 }
