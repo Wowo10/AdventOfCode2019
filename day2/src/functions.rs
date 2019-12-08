@@ -44,30 +44,6 @@ pub mod intcodes {
         let mut finish = false;
         while !finish {
             finish = handle_next(intcode, counter);
-            // let mut return_value = false;
-            // match input[counter] {
-            //     1 => {
-            //         let add_closure = |num: i32, num2: i32| num + num2;
-            //         handle_chunk(&mut input, counter, &add_closure);
-            //         // let value1 = get_value(&input, input[counter + 1] as usize);
-            //         // let value2 = get_value(&input, input[counter + 2] as usize);
-            //         // let position_to_replace = input[counter + 3] as usize;
-            //         // change_value(&mut input, position_to_replace, value1 + value2);
-            //     }
-            //     2 => {
-            //         let multiply_closure = |num: i32, num2: i32| num * num2;
-            //         handle_chunk(&mut input, counter, &multiply_closure);
-            //         // let value1 = get_value(&input, input[counter + 1] as usize);
-            //         // let value2 = get_value(&input, input[counter + 2] as usize);
-            //         // let position_to_replace = input[counter + 3] as usize;
-            //         // change_value(&mut input, position_to_replace, value1 * value2);
-            //     }
-            //     99 => {
-            //         finish = true;
-            //         return_value = true;
-            //     }
-            //     _ => panic!("Wrong opcode!"),
-            // }
             counter += 4;
         }
     }
@@ -78,18 +54,10 @@ pub mod intcodes {
             1 => {
                 let add_closure = |num: i32, num2: i32| num + num2;
                 handle_chunk(intcode, current_position, &add_closure);
-                // let value1 = get_value(&input, input[counter + 1] as usize);
-                // let value2 = get_value(&input, input[counter + 2] as usize);
-                // let position_to_replace = input[counter + 3] as usize;
-                // change_value(&mut input, position_to_replace, value1 + value2);
             }
             2 => {
                 let multiply_closure = |num: i32, num2: i32| num * num2;
                 handle_chunk(intcode, current_position, &multiply_closure);
-                // let value1 = get_value(&input, input[counter + 1] as usize);
-                // let value2 = get_value(&input, input[counter + 2] as usize);
-                // let position_to_replace = input[counter + 3] as usize;
-                // change_value(&mut input, position_to_replace, value1 * value2);
             }
             99 => {
                 return_value = true;
