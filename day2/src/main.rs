@@ -1,12 +1,14 @@
 mod functions;
 use functions::file_utils::*;
+use functions::intcodes::*;
 
 fn main() {
-    let input = get_input();
+    let mut input = get_input();
 
-    for i in input {
-        println!("{}", i);
-    }
+    change_value(&mut input, 1, 12);
+    change_value(&mut input, 2, 2);
 
-    println!("TheEnd");
+    handle_intcode(&mut input);
+
+    println!("Result: {}", get_value(&input, 0));
 }
