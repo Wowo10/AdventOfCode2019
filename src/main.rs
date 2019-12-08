@@ -1,10 +1,11 @@
 mod functions;
 
 fn main() {
-    dupa();
+    let input = functions::get_input();
+
+    for line in &input{
+        println!("{}", line);
+    }
 }
 
-fn dupa() {
-    println!("Dupa: {}", functions::add_two(10));
-}
 
