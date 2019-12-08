@@ -7,11 +7,21 @@ mod test_module {
     
     #[test]
     fn test1() {
-        assert_eq!(4,functions::add_two(2));
+        assert_eq!(2.0, functions::module_counting::count_fuel_needed(&12));
     }
     
     #[test]
     fn test2() {
-        assert_ne!(4,functions::add_two(3));
+        assert_eq!(2.0, functions::module_counting::count_fuel_needed(&14));
+    }
+    
+    #[test]
+    fn test3() {
+        assert_eq!(654.0, functions::module_counting::count_fuel_needed(&1969));
+    }
+    
+    #[test]
+    fn test4() {
+        assert_eq!(33583.0, functions::module_counting::count_fuel_needed(&100756));
     }
 }
