@@ -20,6 +20,11 @@ mod test_module {
     fn test4() {
         testcase("30,1,1,4,2,5,6,0,99", "1,1,1,4,99,5,6,0,99");
     }
+    #[test]
+    #[should_panic]
+    fn panic_test_wrong_opcode() {
+        testcase("whatever", "3,0,0,0");
+    }
 
     fn testcase(expected: &str, input_str: &str) {
         let input = String::from(input_str);
