@@ -23,7 +23,7 @@ pub mod file_utils {
 
     fn parse_input(raw_input: Vec<String>) -> Vec<i32> {
         let mut parsed_input = Vec::new();
-        for line in raw_input{
+        for line in raw_input {
             parsed_input.push(line.parse().unwrap());
         }
 
@@ -31,9 +31,9 @@ pub mod file_utils {
     }
 }
 
-pub mod module_counting{
-    pub fn count_fuel_needed(mass: &i32) -> f64 {
-        substract_two(round_down(divide_by_three((*mass).into())))
+pub mod module_counting {
+    pub fn count_fuel_needed(mass: i32) -> f64 {
+        substract_two(round_down(divide_by_three(mass.into())))
     }
 
     fn divide_by_three(input: f64) -> f64 {
@@ -47,5 +47,16 @@ pub mod module_counting{
 
     fn substract_two(input: f64) -> f64 {
         input - 2.0
+    }
+
+    pub fn count_total_fuel_needed(mass: i32) -> f64 {
+        let mut sum = 0.0;
+
+        let mut fuel_needed = count_fuel_needed(mass);
+        while fuel_needed > 0.0 {
+            sum += fuel_needed;
+            fuel_needed = count_fuel_needed(fuel_needed as i32);
+        }
+        sum
     }
 }
